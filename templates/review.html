@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="static/home/logo.png" type="image/svg+xml">
+    <title>Customer Reviews</title>
+    <style>
+        /* CSS STYLES */
+        body {
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        .container-fluid {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        @media (max-width: 576px) {
+            .navbar-brand, .nav-link {
+                font-size: 14px;
+            }
+            h1, h2 {
+                font-size: 24px;
+            }
+            .profile-img {
+                width: 40px;
+                height: 40px;
+            }
+            .stars {
+                font-size: 20px;
+            }
+            .review-text {
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 767px) {
+        .reviews-container, .container-fluid {
+            width: 100%;
+            max-width: none;
+        }
+        }
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .review {
+            width: 100%;
+            margin: 10px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .profile-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; 
+            border: 2px solid #ddd;
+            margin-right: 10px;
+        }
+        .username {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .stars-container {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .stars {
+            color: #ffd700;
+            font-size: 24px;
+        }
+        .review-text {
+            max-width: calc(100% - 60px); 
+        }
+        form {
+            width: 90%;
+            margin: 0 auto;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            resize: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="text"],
+        input[type="file"],
+        select,
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s; 
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3; 
+        }
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .navbar {
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            height: 85px;
+            position: sticky;
+            color: #000000;
+            top: 0;
+            z-index: 1000;
+            font-size: larger;
+        }
+        .navbar:hover{
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            color: #000000;
+            font-size: larger;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #000000;
+            font-size: larger;
+        }
+        .navbar-nav .nav-link.book-now, .navbar-nav .nav-link.admin-dashboard {
+            color: #000000;
+            font-size: larger;
+        }
+        .newly-added {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            animation: fadeInOut 2s infinite    ;
+        }
+        @keyframes fadeInOut{
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    @media (max-width: 576px) {
+        .navbar-brand, .nav-link {
+            font-size: 14px;
+        }
+        h1, h2 {
+            font-size: 24px;
+            text-align: center;
+        }
+        .profile-img {
+            width: 40px;
+            height: 40px;
+        }
+        .stars {
+            font-size: 20px;
+        }
+        .review-text {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .reviews-container, .container-fluid {
+            width: 100%;
+            max-width: none;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .review {
+            width: 90%;
+        }
+    }
+    @media (max-width: 576px) {
+        .navbar-brand, .nav-link {
+            font-size: 14px;
+        }
+        h1, h2 {
+            font-size: 24px;
+            text-align: center; 
+        }
+        .profile-img {
+            width: 40px;
+            height: 40px;
+        }
+        .stars {
+            font-size: 20px;
+        }
+        .review-text {
+            font-size: 14px;
+            margin: 10px 0; 
+        }
+        .reviews-container, .container-fluid {
+            width: 100%;
+            max-width: none;
+            justify-content: center;
+            align-items: center; 
+            display: flex;
+            flex-direction: column; 
+        }
+        .review {
+            width: 90%; 
+        }
+    }
+    </style>
+</head>
+<body>
+<!-- NAVIGATION BAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/" style="padding-left: 100px" style="padding-bottom: 10px;">
+           <img style="height: 25%; width: 18%;" src="static/home/logo.png" id="logoImg">
+        </a> 
+        
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link book-now" href="/">Home</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+    <!-- EXISTING REVIEWS -->
+<div class="container-fluid">
+    <h1 class="text-center">Reviews From Our Valued Customers</h1>
+    <div class="reviews-container">
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/1.jpg" class="profile-img">
+                <span class="username">Pooja Nitin Shah</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            </div>
+            <div class="review-text">
+                <p>Moving can be a stressful experience, but this company made it easy and hassle-free for me. The team was punctual, efficient, and treated my belongings with care. They made sure everything was properly packed and loaded onto the truck and delivered to my new home without any issues. I'm grateful for their hard work and would definitely use their services again in the future.</p>
+            </div>
+        </div>
+
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/2.jpg" class="profile-img">
+                <span class="username">Karan Harish Patel</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            </div>
+            <div class="review-text">
+                <p>I've used many moving companies before, but this one stands out. Excellent communication and service throughout.</p>
+            </div>
+        </div>
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/3.jpg" class="profile-img">
+                <span class="username">Nisha Rani Verma</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            </div>
+            <div class="review-text">
+                <p>The attention to detail and professionalism exhibited by the TrustedRelo was commendable. Highly recommend their services!</p>
+            </div>
+        </div>
+        
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/4.jpg" class="profile-img">
+                <span class="username">Christopher Davis</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            </div>
+            <div class="review-text">
+                <p>It was a mixed experience. Some aspects of the service were good, while others fell short.</p>
+            </div>
+        </div>
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/5.jpg" class="profile-img">
+                <span class="username">Rahul Kumar Singh</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+            </div>
+            <div class="review-text">
+                <p>The movers were polite, but the overall service was just okay. Nothing extraordinary.</p>
+            </div>
+        </div>
+        
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/6.jpg" class="profile-img">
+                <span class="username">Vishal Rajendra Gupta</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            </div>
+            <div class="review-text">
+                <p>Thank you for making what could have been a difficult day into a smooth and hassle-free experience. 5 stars all the way!</p>
+            </div>
+        </div>
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/7.jpg" class="profile-img">
+                <span class="username">Daniel Anderson</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            </div>
+            <div class="review-text">
+                <p>I had a positive experience with the moving company. The team was friendly, helpful, and worked quickly to get the job done. While there were a few minor issues, like a delay in the delivery, overall it was a good experience.</p>
+            </div>
+        </div>
+        
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/8.jpg" class="profile-img">
+                <span class="username">Aarti Vishal Parikh</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+            </div>
+            <div class="review-text">
+                <p>The service provided by the movers was satisfactory. They arrived on time and worked diligently to pack and transport my belongings. However, there were a couple of issues during the move, such as a delay in unloading at the destination and a small scratch on one of my furniture pieces. While these were minor inconveniences, they detracted from an otherwise decent experience.</p>
+            </div>
+        </div>
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/9.jpg" class="profile-img">
+                <span class="username">Nirav Jatin Shah</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+            </div>
+            <div class="review-text">
+                <p>I had a good experience with the moving company. The team was professional, courteous, and worked quickly to get the job done. While there were a couple of small issues, like a delay in the delivery, it was nothing too serious.</p>
+            </div>
+        </div>
+        
+        <div class="review">
+            <div class="profile-info">
+                <img src="static/review/10.jpg" class="profile-img">
+                <span class="username">Emily Johnson</span>
+            </div>
+            <div class="stars-container">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            </div>
+            <div class="review-text">
+                <p>I couldn't be happier with the service provided by this moving company. From start to finish, everything was seamless. The team arrived on time, handled my belongings with care, and ensured everything was properly packed and loaded onto the truck. Moving can be stressful, but they made it easy and stress-free for me.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- REVIEW FORM -->
+<div class="container-fluid">
+    <h2 class="text-center">Write Your Own Review</h2>
+    <!-- <div class="row justify-content-center">
+    <div class="col-md-6"> -->
+        <form id="review-form">
+        <div>
+            <label for="username">Your Name:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="profile-photo">Profile Photo:</label>
+            <input type="file" id="profile-photo" name="profile-photo">
+        </div>
+        <div>
+            <label for="stars">Star Rating:</label>
+            <select name="stars" id="stars">
+                <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+                <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
+                <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+                <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
+            </select>
+        </div>
+        <div>
+            <label for="review">Your Review:</label>
+            <textarea name="review" id="review" required></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Submit Review">
+        </div>
+    </form>
+</div>
+    <!-- JAVASCRIPT FOR FORM SUBMISSION HANDLING -->
+    <script>
+        // FUNCTION TO HANDLE FORM SUBMISSION
+        document.getElementById('review-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // GETTING THE FORM DATA
+            var username = this.username.value;
+            var profilePhoto = this['profile-photo'].files[0];
+            var stars = parseInt(this.stars.value);
+            var reviewText = this.review.value;
+            // MARKUP FOR "NEWLY ADDED" TEXT
+            var newReviewMarkup = `
+                <div class="review">
+                    <div class="profile-info">
+                        <img src="${profilePhoto ? URL.createObjectURL(profilePhoto) : 'profile-default.jpg'}" class="profile-img">
+                        <span class="username">${username}</span>
+                    </div>
+                    <div class="stars-container">
+                        <span class="stars">${'&#9733;'.repeat(stars)}</span>
+                    </div>
+                    <div class="review-text">
+                        <p>${reviewText}</p>
+                    </div>
+                    <div class="newly-added">NEWLY ADDED</div> <!-- Added "NEWLY ADDED" text -->
+                </div>
+            `;
+            var reviewsContainer = document.querySelector('.reviews-container');
+            reviewsContainer.insertAdjacentHTML('afterbegin', newReviewMarkup);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        function clearFormData() {
+            document.getElementById('review-form').reset();
+        }
+        window.onload = clearFormData;
+    </script>
+</body>
+</html>

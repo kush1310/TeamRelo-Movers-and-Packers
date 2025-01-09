@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="static/home/logo.png" type="image/svg+xml">
+    <style>
+        body {
+            background: linear-gradient(to right, #b8e994, #78e08f);
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #3498db;
+            color: #fff;
+        }
+        .card-body {
+            background-color: #fff;
+        }
+        .container {
+            max-width: 10000px;
+            margin: 0 auto;
+            padding: 5px;
+            font-size: larger;
+        }
+        .navbar {
+            background: linear-gradient(to right, #b8e994, #78e08f);
+            height: 60px;
+            position: sticky;
+            padding-left: 100px;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar:hover{
+            background: linear-gradient(to right, #b8e994, #78e08f);
+            color: #000000;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #000000;
+        }
+        .navbar-nav .nav-link.book-now, .navbar-nav .nav-link.admin-dashboard {
+            color: #000000;
+        }
+        .card-body li {
+            list-style-type: none;
+            margin-left: -25px;
+            margin-bottom: 5px;
+            font-size: 18px;
+            color: #333;
+        }
+        .status-waiting {
+            color: goldenrod;
+            font-weight: bolder;
+        }
+        .status-approved {
+            color: green;
+            font-weight: bolder;
+        }
+        .status-declined {
+            color: red;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">            
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/booking">Book a New Request</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    My Booking Requests
+                </div>
+                <div class="card-body">
+                    <hr>
+                    {% if booking_data %}
+                        <ul>
+                            {% for index, booking in enumerate(booking_data, start=1) %}
+                                <li>Booking Request {{ index }}: {{ booking[2] }} - {{ booking[3] }} - Status: 
+                                    {% if booking[5] == 'Waiting' %}
+                                        <span class="status-waiting">{{ booking[5] }}</span>
+                                    {% elif booking[5] == 'Approved' %}
+                                        <span class="status-approved">{{ booking[5] }}</span>
+                                    {% else %}
+                                        <span class="status-declined">{{ booking[5] }}</span>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No bookings</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

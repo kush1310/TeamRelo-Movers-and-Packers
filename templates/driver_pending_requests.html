@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Pending Requests</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="static/home/logo.png" type="image/svg+xml">
+    <style>
+        .navbar {
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar:hover{
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            color: #000000;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #000000;
+        }
+        .navbar-nav .nav-link.book-now, .navbar-nav .nav-link.admin-dashboard {
+            color: #000000;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .navbar-brand svg {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link book-now" href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <h4>Driver Information</h4>
+                <p><strong>Name:</strong> {{ driver_info[1] }}</p>
+                <p><strong>Email:</strong> {{ driver_info[2] }}</p>
+                <p><strong>Mobile:</strong> {{ driver_info[3] }}</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <h4>Pending Requests</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Pickup Address</th>
+                            <th>Destination Address</th>
+                            <th>Remark</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for request in pending_requests %}
+                        <tr>
+                            <td>{{ request[0] }}</td>
+                            <td>{{ request[2] }}</td>
+                            <td>{{ request[3] }}</td>
+                            <td>{{ request[4] }}</td>  
+                            <td>
+                                <form action="/driver/accept_request/{{ request[0] }}" method="POST">
+                                    <button type="submit" class="btn btn-success">Accept</button>
+                                </form><br>
+                                <form action="/driver/decline_request/{{ request[0] }}" method="POST">
+                                    <button type="submit" class="btn btn-danger">Decline</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

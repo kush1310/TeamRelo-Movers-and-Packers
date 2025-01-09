@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustedRelo&trade;</title>
+    <link rel="icon" href="static/home/logo.png" type="image/svg+xml">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        h1 {
+            padding-top: 15px;
+        }
+        .navbar {
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            height: 90px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .emandphno{
+            background: linear-gradient(to right, #34495E, #D1D5DB);
+            padding: 10px 0;
+        }
+        .inncontain{
+            padding-top: 15px;
+            max-width: 1170px;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        .col-lg-6{
+            flex: 0 0 50%;
+            max-width: 50%; 
+        }
+        .emandphno .left-info{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            position: sticky;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        .col-lg-6{
+            flex: 0 0 50%;
+            max-width: 50%; 
+        }
+        .emandphno .left-info{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            position: sticky;
+        }
+        .navbar {
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            height: 100px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar:hover{
+            background: linear-gradient(to right, #86A8E7, #91EAE4);
+            color: #000000;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #000000;
+        }
+        .navbar-nav .nav-link.book-now, .navbar-nav .nav-link.admin-dashboard {
+            color: #000000;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .navbar-brand svg {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+        .container1{
+            width: 100px;
+            height: 80px;
+            margin: 0px 20px 20px 20px;
+        }
+        .abtcontainer{
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5px;
+            font-size: larger;
+        }
+        .container {
+            max-width: 10000px;
+            margin: 0 auto;
+            padding: 5px;
+            font-size: larger;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            margin-left: 20%;
+            margin-right: 20%;
+            border-radius: 10px;
+            padding: 1px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            padding: 10px;
+            display: inline-block;
+        }
+        h2 {
+            margin: 0;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        section#about {
+            padding: 20px 0;
+        }
+        section#about h2 {
+            border: none;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            clear: both;
+        }
+        .container2 {
+            width: 50%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="checkbox"], 
+        select,
+        textarea { 
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 22px);
+        }
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+        .blue-dropdown {
+            background-color: rgb(250, 250, 250); 
+            border: 1px solid #ccc;
+            color: #000000; 
+            border-radius: 4px;
+            max-width: 100%;
+        }
+        option{
+            background: whitesmoke;
+            font-size: larger;
+            color: #000000;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .send-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            max-width: 100px;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 4px;
+            transition: background-color 0.8s;
+        }
+        .send-button:hover {
+            background-color: #0056b3;
+        }
+        .checkbox-group {
+            margin-bottom: 15px;
+        }
+        @media only screen and (max-width: 600px) {
+            .navbar-brand svg {
+                width: 70px;
+            }
+            .container2 {
+                width: 80%;
+            }
+        }
+        @media only screen and (min-width: 600px) {
+            .navbar-brand svg {
+                width: 80px;
+            }
+        }
+        @media only screen and (min-width: 768px) {
+            .navbar-brand svg {
+                width: 90px;
+            }
+        }
+        @media only screen and (min-width: 992px) {
+            .navbar-brand svg {
+                width: 100px;
+            }
+        }
+        @media only screen and (min-width: 1200px) {
+            .navbar-brand svg {
+                width: 120px;
+            }
+        }
+        .slider-frame {
+            overflow: hidden;
+            width: 85%;
+            height: auto;
+            margin: 0 auto;
+            
+        }
+        .slide-images {
+            display: flex;
+            animation: slide 20s infinite;
+            animation-timing-function: linear;
+        }
+        @keyframes slide {
+            0% {
+                transform: translateX(0%);
+            }
+            16.66% {
+                transform: translateX(0%);
+            }
+            33.33% {
+                transform: translateX(-100%);
+            }
+            49.99% {
+                transform: translateX(-100%);
+            }
+            66.66% {
+                transform: translateX(-200%);
+            }
+            83.33% {
+                transform: translateX(-200%);
+            }
+            100% {
+                transform: translateX(-300%);
+            }
+        }
+        .image-container {
+            flex: 0 0 auto;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #logoNav{
+            height: 120px;
+            width: 225px;
+        }
+        .image-container {
+            flex: 0 0 auto;
+            width: 100;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .card {
+            margin: 0 10px;
+            padding: 3px;
+            width: 350px;
+            border: none;
+            border-radius: 7px;
+        }
+        #cards {
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 15px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        } 
+        .card {
+            margin: 0 10px;
+            padding: 3px;
+            width: 350px;
+            border: none;
+            border-radius: 7px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(100%);
+        }
+        .card:hover::before {
+            transform: translateY(0);
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 992px) {
+            .navbar-brand svg {
+                width: 80px;
+            }
+        }
+        @media (max-width: 768px) {
+            .navbar-brand svg {
+                width: 70px;
+            }
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+        @media (max-width: 768px) {
+            .slider-frame {
+                width: 100%;
+                height: auto;
+            }
+            .slide-images {
+                animation-duration: 15s;
+            }
+        }
+        #logoImg{
+            height: 125px;
+            width: 225px;
+            padding-bottom: 10px;
+        }
+        #cards {
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 15px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;     
+        } 
+        .card {
+            margin: 0 10px;
+            padding: 3px;
+            width: 350px;
+            border: none;
+            border-radius: 7px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(100%);
+        }
+        .card:hover::before {
+            transform: translateY(0);
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="emandphno" style="padding-top: 5px;">
+        <div class="inncontain">
+           <div class="row align-items-center">
+            <div class="col-lg-6 col-sm-6">
+               <ul class="left-info" style="color: #ffffff; font-family: 'Times New Roman', Times, serif;">
+                    <i class="bi-bi-envelope">
+                        <li style="font-size: 20px;  margin-left: 10%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+                            </svg>
+                                <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmyaccount.google.com%3Futm_source%3Daccount-marketing-page%26utm_medium%3Dgo-to-account-button&ifkv=ARZ0qKLEx8BYO3pXsfpmaUd6v3lCUQ4XQDDv-LLDtBCXA0AOsLNph3jmSuBWN2teLB9N0AWjOMfPkw&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-972118001%3A1713369545469620&theme=mn&ddm=0" style="text-decoration: none; color: inherit;" >&nbsp;&nbsp;&nbsp;admin@teamrelo.ac.in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                            </svg>                 
+                            &nbsp;&nbsp;+91 9462603194   
+                        </li>
+                    </i>
+               </ul>
+            </div>
+           </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/" style="padding-left: 100px" style="padding-bottom: 10px;">
+               <img src="static/home/logo.png" id="logoImg">
+            </a> 
+            
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link book-now" href="/booking">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link book-now" href="/review">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link book-now" href="/driver/pending_requests">Driver</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link admin-dashboard" href="/admin/login">Admin Dashboard</a> 
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <h1 id="typewriter"></h1>
+
+            <p class="lead">We provide reliable and efficient moving and packing services for your convenience.</p>
+
+            <a href="/booking" class="btn btn-primary btn-lg">Book Now</a>
+        </div>
+    </div>
+</div><br><br><br>
+
+<!-- CARD SECTION -->
+<section id="cards" style="margin-top: 50px;">
+    <div class="container">
+        <!-- CARD 1 -->
+        <div class="card">
+            <img src="static/home/card1.jpg" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">WE MAKE IT FASTER</h5>
+                <p class="card-text">TrustedRelo MOVERS AND PACKERS make your relocation fast and stress free</p>
+            </div>
+        </div>
+        <!-- CARD 2 -->
+        <div class="card">
+            <img src="static/home/card2.jpg" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">ON TIME DELEVERY</h5>
+                <p class="card-text">TruestedRelo MOVERS AND PACKERS shift your goods with care and assume the responsibility for helping you and your goods to reach safely on budget and on time</p>
+            </div>
+        </div>
+        <!-- CARD 3 -->
+        <div class="card">
+            <img src="static/home/card3.jpg" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">SAVE AND SECURE MOVE</h5>
+                <p class="card-text">TrustedRelo MOVERS AND PACKERS is the most respected and recommended Movers and Packers Company in GUJARAT. More than 50% of our business is referred to us by customers who have shifted with us in the past</p>
+            </div>
+        </div>
+    </div>
+</section> <br><br><br>
+<!-- ABOUT US -->
+    <header>
+        <h1>About Us</h1>
+    </header>
+    <section id="about">
+        <div class="abtcontainer">
+            <h2>Mission & Vision</h2>
+            <p>At TrustedRelo MOVERS AND PACKERS our aim is to create satisfied customers. We constantly defy ourselves to innovate and provide services that challenge industry standards.</p>
+        </div>
+        <div class="abtcontainer">
+            <h2>Values</h2>
+            <p>To ensure that all the services comply with the defined industry standards, we have employed a team of representatives who hold vast knowledge in this domain.</p>
+        </div>
+        <div class="abtcontainer">
+            <h2>Our Team</h2>
+            <p>We have appointed a team of skilled professionals such as team managers, safety controllers, and marketing experts who are able to work in any situation.</p>
+        </div>
+        <div class="abtcontainer">
+            <h2>About TrustedRelo MOVERS AND PACKERS</h2>
+            <p>TrustedRelo MOVERS AND PACKERS works very hard to satisfy our customers with safe and timely delivery. Our expertise leaves no stone unturned while fulfilling any activity i.e. Packing, Transportation, Documentation, Tracking, or Re-arranging your valuable things at your required location.<br><br>
+                 TrustedRelo MOVERS AND PACKERS is known for Packing, Quick Loading, Unloading, Unpacking, Transportation, Car by Car Carrier at economical rates door to door services. The company has been established by Ram Niwas Jat. Our Head Office is at Vadodara which is nerve control center.<br><br>
+                 The Management is enough capable to provides innovative and flexible solutions to its clients through its various branches across India. The name for all your packing needs, The movers who move your belonging with utmost care & responsibility be it your home or your business or industry.</p>
+        </div>
+    </section>
+
+    <!-- CONTACT US -->
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+    <section id="contact">
+    <div class="abtcontainer">
+        <div class="container2">
+            <form action="/contact/us" method="post" id="contact-us">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Contact Number</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="state">State</label>
+                <select id="state" name="state" class="blue-dropdown">
+                    <option value="" selected disabled> </option>
+                    <option value="state1">Andhra Pradesh</option>
+                    <option value="state2">Arunachal Pradesh</option>
+                    <option value="state3">Assam</option>
+                    <option value="state4">Bihar</option>
+                    <option value="state5">Chhattisgarh</option>
+                    <option value="state6">Goa</option>
+
+                    <option value="state7">Gujarat</option>
+                    <option value="state8">Haryana</option>
+                    <option value="state9">Himachal Pradesh</option>
+                    <option value="state10">Jharkhand</option>
+                    <option value="state11">Karnataka</option>
+                    <option value="state12">Kerala</option>
+
+                    <option value="state13">Madhya Pradesh</option>
+                    <option value="state14">Maharashtra</option>
+                    <option value="state15">Manipur</option>
+                    <option value="state16">Meghalaya</option>
+                    <option value="state17">Mizoram</option>
+                    <option value="state18">Nagaland</option>
+
+                    <option value="state19">Odisha</option>
+                    <option value="state20">Punjab</option>
+                    <option value="state21">Rajasthan</option>
+                    <option value="state22">Sikkim</option>
+                    <option value="state23">Tamil Nadu</option>
+                    <option value="state24">Telangana</option>
+
+                    <option value="state25">Tripura</option>
+                    <option value="state26">Uttar Pradesh</option>
+                    <option value="state27">Uttarakhand</option>
+                    <option value="state28">West Bengal</option>
+                </select>
+
+                <label for="union_territory">Union Territory (If Applicable)</label>
+                <select id="union_territory" name="union_territory" class="blue-dropdown">
+                    <option value="" selected></option>
+                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Ladakh">Ladakh</option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                </select>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit" class="send-button" onclick="redirectToAnotherFile()">Send</button>
+            </form>
+        </div>
+    </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+    <section id="footer">
+        <p style="padding-bottom: 1px;">Bhailalbhai and Bhikhabhai Institute of Techonology,  Nr. Iscon Temple, Opp. Shastri Medan, Vallabh Vidya Nagar, Anand, Gujarat, India. 388120</p>
+        <p style="padding-bottom: 1px;">Copyright &copy; 2024 TrustedRelo&trade; All rights reserved. <b>| Designed and Developed by Team TrustedRelo</b></p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+        </svg>
+            <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmyaccount.google.com%3Futm_source%3Daccount-marketing-page%26utm_medium%3Dgo-to-account-button&ifkv=ARZ0qKLEx8BYO3pXsfpmaUd6v3lCUQ4XQDDv-LLDtBCXA0AOsLNph3jmSuBWN2teLB9N0AWjOMfPkw&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-972118001%3A1713369545469620&theme=mn&ddm=0" style="text-decoration: none; color: inherit;" >&nbsp;&nbsp;&nbsp;admin@teamrelo.ac.in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+        </svg>                 
+        &nbsp;&nbsp;&nbsp;9462603194  
+    </section>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function redirectToAnotherFile() {
+            window.location.href = 'index.html';
+        }
+        window.onload = function() {
+            document.getElementById("contact-us").reset();
+        }
+        function disableEnterKey(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+            }
+        }
+        document.addEventListener('keydown', disableEnterKey);
+        // TYPEWRITER EFFECT
+        function typeWriter(text, i, id) {
+            if (i < text.length) {
+                document.getElementById(id).innerHTML += text.charAt(i);
+                i++;
+                setTimeout(function() {
+                    typeWriter(text, i, id);
+                }, 60);
+            }
+        }
+        window.onload = function() {
+            typeWriter("Welcome to TrustedRelo Movers and Packers", 0, "typewriter");
+        };
+    </script>
+</body>
+</html>
