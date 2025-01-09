@@ -1,8 +1,0 @@
-flask
-sqlite3
-hashlib
-os
-uuid
-random
-smtplib
-email
